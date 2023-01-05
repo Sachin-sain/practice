@@ -1,0 +1,495 @@
+/*1.drawer
+2.alert dailog
+3.media query
+
+
+
+import 'package:flutter/material.dart';
+
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: home(),
+  ));
+}
+
+class home extends StatefulWidget {
+  const home({Key? key}) : super(key: key);
+
+  @override
+  State<home> createState() => _homeState();
+}
+
+class _homeState extends State<home> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.greenAccent,
+      bottomNavigationBar: BottomNavigationBar(
+        iconSize: 40,
+        selectedItemColor: Colors.black,
+        backgroundColor: Colors.greenAccent,
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home_filled,
+                color: Colors.black,
+              ),
+              label: "Home",
+              tooltip: "Home Page",
+              backgroundColor: Colors.greenAccent),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.account_box,
+              color: Colors.black,
+            ),
+            label: "About",
+            backgroundColor: Colors.greenAccent,
+            tooltip: "About Page",
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.cleaning_services,
+                color: Colors.black,
+              ),
+              label: "Service",
+              tooltip: "Service Page",
+              backgroundColor: Colors.greenAccent)
+        ],
+      ),
+      endDrawer: Drawer(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(30), bottomRight: Radius.circular(30)),
+        ),
+        backgroundColor: Colors.greenAccent,
+        semanticLabel: "true",
+        child: Container(
+          child: ListTile(
+            leading: Icon(Icons.person),
+            title: Text(
+              "Rohit",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.greenAccent,
+          onPressed: () {},
+          child: Icon(
+            Icons.arrow_circle_right,
+            color: Colors.black,
+          )),
+      appBar: AppBar(
+        backgroundColor: Colors.greenAccent,
+        title: Text(
+          "Practice ",
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+        actions: [],
+      ),
+      body: Center(
+        child: TextButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (ctx) => AlertDialog(
+                title: const Text("Registered Successfully"),
+                // content: const Text("You have raised a Alert Dialog Box"),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(ctx).pop();
+                    },
+                    child: Container(
+
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(14.0),
+                        border: Border(
+
+                        )
+
+                      ),
+                      padding: const EdgeInsets.all(14),
+                      child: const Text("Okay",style: TextStyle(color: Colors.white), ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+          child: Text(
+            "Alertbutton",
+            style: TextStyle(color: Colors.black, fontSize: 25),
+          ),
+        ),
+      ),
+    );
+  }
+}*/
+
+/*Media query*/
+/*import 'package:flutter/material.dart';
+void main(){
+  runApp(
+    MaterialApp(
+      home:Home()
+    ),
+  );
+
+}
+class Home extends StatelessWidget {
+  var orientation, size,height,width;
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    // getting the orientation of the app
+    orientation = MediaQuery.of(context).orientation;
+
+    //size of the window
+    size = MediaQuery.of(context).size;
+    height = size.height;
+    width = size.width;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Geeks For Geeks"),
+        backgroundColor: Colors.green,
+      ),
+
+      // checking the orientation
+      body: orientation == Orientation.portrait?Container(
+        color: Colors.blue,
+        height: height/4,
+        width: width/4,
+      ):Container(
+        height:500,
+        width: 500,
+        color: Colors.red,
+      ),
+    );
+  }
+}*/
+/*4.tabbar
+import 'package:flutter/material.dart';
+
+// function to trigger the app build
+void main() {
+  runApp(const TabBarDemo());
+}
+
+// class to build the app
+class TabBarDemo extends StatelessWidget {
+  const TabBarDemo({Key? key}) : super(key: key);
+
+// build the app
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: DefaultTabController(
+        length: 5,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: const TabBar(
+
+              tabs: [
+                Tab(icon: Icon(Icons.music_note)),
+                Tab(icon: Icon(Icons.music_video)),
+                Tab(icon: Icon(Icons.camera_alt)),
+                Tab(icon: Icon(Icons.grade)),
+                Tab(icon: Icon(Icons.email)),
+              ],
+            ), // TabBar
+            title: const Text('GeeksForGeeks'),
+            backgroundColor: Colors.green,
+          ), // AppBar
+          body: const TabBarView(
+            children: [
+              Icon(Icons.music_note),
+              Icon(Icons.music_video),
+              Icon(Icons.camera_alt),
+              Icon(Icons.grade),
+              Icon(Icons.email),
+            ],
+          ), // TabBarView
+        ), // Scaffold
+      ), // DefaultTabController
+    ); // MaterialApp
+  }
+}*/
+
+/*
+6.skeltentext it is like loader
+import 'package:flutter/material.dart';
+import 'package:skeleton_text/skeleton_text.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+// root of the application
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Skeleton Text',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("GeeksForGeeks"),
+          backgroundColor: Colors.green,
+        ),
+        // list of items in body
+        body: ListView.builder(
+            scrollDirection: Axis.vertical,
+            physics: BouncingScrollPhysics(),
+            itemCount: 5,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      color: Colors.white70),
+                  child: Container(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+
+                      // SkeletonAnimation method
+                      children: <Widget>[
+                        SkeletonAnimation(
+                          child: Container(
+                            width: 70.0,
+                            height: 70.0,
+                            decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                            ),
+                          ),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 15.0, bottom: 5.0),
+                              child: SkeletonAnimation(
+                                child: Container(
+                                  height: 15,
+                                  width:
+                                  MediaQuery.of(context).size.width * 0.6,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      color: Colors.grey[300]),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15.0),
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 5.0),
+                                child: SkeletonAnimation(
+                                  child: Container(
+                                    width: 60,
+                                    height: 13,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                        BorderRadius.circular(10.0),
+                                        color: Colors.grey[300]),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }),
+      ),
+    );
+  }
+}
+*/
+
+/*
+Navigate next page with animation
+
+import 'package:flutter/material.dart';
+
+main() {
+  runApp(const MaterialApp(
+    home: Homepage(),
+  ));
+}
+
+class Homepage extends StatelessWidget {
+  const Homepage({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('GeeksForGeeks'),
+        backgroundColor: Colors.green,
+      ),
+      body: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(_createRoute());
+            },
+            child: const Text('Go to Page 2'),
+          )
+
+        // RaisedButton is deprecated
+        // We should use ElevatedButton instead
+
+        // child: RaisedButton(
+        // child: const Text('Go to Page 2'),
+        // onPressed: () {
+        //	 Navigator.of(context).push(_createRoute());
+        // },
+        // ),
+
+      ),
+    );
+  }
+}
+
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const Page2(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = const Offset(0.0, 1.0);
+      var end = Offset.zero;
+      var curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
+
+class Page2 extends StatelessWidget {
+  const Page2({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: const Center(
+        child: Text('Page 2'),
+      ),
+    );
+  }
+}
+*/
+
+/*
+7.URL LAUNCHER
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+// function to trigger the build process
+void main() => runApp(const MyApp());
+
+_launchURLBrowser() async {
+  var url = Uri.parse("https://www.geeksforgeeks.org/");
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+_launchURLApp() async {
+  var url = Uri.parse("https://www.geeksforgeeks.org/");
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Geeks for Geeks'),
+          backgroundColor: Colors.green,
+        ),
+        body: SafeArea(
+          child: Center(
+            child: Column(
+              children: [
+                Container(
+                  height: 250.0,
+                ),
+                const Text(
+                  'Welcome to GFG!',
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Container(
+                  height: 20.0,
+                ),
+                ElevatedButton(
+                  onPressed: _launchURLBrowser,
+                  style: ButtonStyle(
+                    padding:
+                    MaterialStateProperty.all(const EdgeInsets.all(5.0)),
+                    textStyle: MaterialStateProperty.all(
+                      const TextStyle(color: Colors.black),
+                    ),
+                  ),
+                  // textColor: Colors.black,
+                  // padding: const EdgeInsets.all(5.0),
+                  child: const Text('Open in Browser'),
+                ),
+                Container(
+                  height: 20.0,
+                ),
+                ElevatedButton(
+                  onPressed: _launchURLApp,
+                  style: ButtonStyle(
+                      padding:
+                      MaterialStateProperty.all(const EdgeInsets.all(5)),
+                      textStyle: MaterialStateProperty.all(
+                          const TextStyle(color: Colors.black))),
+                  // textColor: Colors.black,
+                  // padding: const EdgeInsets.all(5.0),
+                  child: const Text('Open in App'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+*/
+
+
